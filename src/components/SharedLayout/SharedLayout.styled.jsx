@@ -1,9 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div`
-  max-width: 960px;
+export const ContainerMain = styled.div`
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
-
-  // background-color: pink;
+  padding: 150px 8px;
 `;

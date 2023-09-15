@@ -1,12 +1,14 @@
 import Navigation from "../Navigation";
-import { Header } from "./AppBar.styled";
+import { Header, ContainerHeader, LinkStyled } from "./AppBar.styled";
 
 const AppBar = () => {
   return (
     <Header>
-      <p>+++Header+++</p>
+      <ContainerHeader>
+        <LinkStyled to="/">RentalCar</LinkStyled>
 
-      <Navigation />
+        <Navigation />
+      </ContainerHeader>
     </Header>
   );
 };

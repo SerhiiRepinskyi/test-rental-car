@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectIsLoading, selectError } from "../../redux/selectors";
-
-import CarsList from "../../components/CarsList";
+import {
+  selectItemsCars,
+  selectIsLoading,
+  selectError,
+} from "../../redux/selectors";
+import CarCard from "../../components/CarCard";
 import { fetchCars, fetchLoadMoreCars } from "../../redux/carsOperations";
+
+import { ListCatalog } from "./CatalogPage.styled";
+
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
+  const itemsCars = useSelector(selectItemsCars);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
-
   const [currentPage, setCurrentPage] = useState(2);
 
   useEffect(() => {
@@ -19,20 +25,31 @@ const CatalogPage = () => {
   const handleLoadMore = () => {
     dispatch(fetchLoadMoreCars(currentPage));
     setCurrentPage((prevPage) => prevPage + 1);
-    console.log(currentPage);
   };
+
+  const isShowList = itemsCars.length > 0;
+  const isShowButton =
+    itemsCars.length > 0 && !isLoading && !(itemsCars.length % 8);
 
   return (
     <section>
       {/* <SideBar /> */}
 
-      <CarsList />
+      {isShowList && (
+        <ListCatalog>
+          {itemsCars.map((car) => (
+            <li key={car.id}>
+              <CarCard car={car} />
+            </li>
+          ))}
+        </ListCatalog>
+      )}
 
-      {!isLoading && currentPage <= 4 ? (
+      {isShowButton && (
         <button type="button" onClick={handleLoadMore}>
           Load more
         </button>
-      ) : null}
+      )}
 
       {isLoading && !error && <b>Request in progress...</b>}
       {error && error}
