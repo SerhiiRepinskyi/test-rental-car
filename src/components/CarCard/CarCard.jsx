@@ -1,3 +1,7 @@
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavoriteCars } from "../../redux/selectors";
+import { addToFavorites, removeFromFavorites } from "../../redux/carsSlice";
 import {
   CardDivStyled,
   ImgDivStyled,
@@ -8,9 +12,24 @@ import {
   DescriptionSpanStyled,
   TypeTextStyled,
   BtnLearnMoreStyled,
+  HeartNormalIcon,
+  HeartActiveIcon,
 } from "./CarCard.styled";
 
-const CarCard = ({ car, carIsFavorite, onToggleFavorite, onLearnMore }) => {
+const CarCard = ({ car, onLearnMore }) => {
+  const dispatch = useDispatch();
+  const favoriteCars = useSelector(selectFavoriteCars);
+
+  const carIsFavorite = favoriteCars.includes(car.id);
+
+  const handleToggleFavorite = () => {
+    if (carIsFavorite) {
+      dispatch(removeFromFavorites(car.id));
+    } else {
+      dispatch(addToFavorites(car.id));
+    }
+  };
+
   const {
     id,
     year,
@@ -31,15 +50,12 @@ const CarCard = ({ car, carIsFavorite, onToggleFavorite, onLearnMore }) => {
     <CardDivStyled>
       <ImgDivStyled>
         <ImgStyled src={img} alt={description} />
-        {/* {carIsFavorite ? (
-            <StyledActiveIcon
-              onClick={() => onToggleFavorite(car, carIsFavorite)}
-            />
-          ) : (
-            <StyledNormalIcon
-              onClick={() => onToggleFavorite(car, carIsFavorite)}
-            />
-          )} */}
+
+        {carIsFavorite ? (
+          <HeartActiveIcon onClick={handleToggleFavorite} />
+        ) : (
+          <HeartNormalIcon onClick={handleToggleFavorite} />
+        )}
       </ImgDivStyled>
 
       <NameDivStyled>

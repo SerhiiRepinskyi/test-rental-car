@@ -3,7 +3,7 @@ import { fetchCars, fetchLoadMoreCars } from "./carsOperations";
 
 const carsInitialState = {
   itemsCars: [],
-  favoritesCars: [],
+  favoriteCars: [],
   isLoading: false,
   error: null,
 };
@@ -21,6 +21,20 @@ const handleRejected = (state, action) => {
 const carsSlice = createSlice({
   name: "cars",
   initialState: carsInitialState,
+
+  reducers: {
+    addToFavorites: (state, action) => {
+      const carId = action.payload;
+      if (!state.favoriteCars.includes(carId)) {
+        state.favoriteCars = [...state.favoriteCars, carId];
+      }
+    },
+
+    removeFromFavorites: (state, action) => {
+      const carId = action.payload;
+      state.favoriteCars = state.favoriteCars.filter((id) => id !== carId);
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -41,5 +55,7 @@ const carsSlice = createSlice({
       .addCase(fetchLoadMoreCars.rejected, handleRejected);
   },
 });
+
+export const { addToFavorites, removeFromFavorites } = carsSlice.actions;
 
 export const carsReducer = carsSlice.reducer;
