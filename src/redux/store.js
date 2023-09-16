@@ -27,7 +27,7 @@ const middleware = [
 const carsPersistConfig = {
   key: "cars", // Назва ключа в LocalStorage
   storage,
-  whitelist: ["favoriteCars"],
+  // whitelist: ["favoriteCars"],
 };
 
 export const store = configureStore({
