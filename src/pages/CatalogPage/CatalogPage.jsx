@@ -8,8 +8,7 @@ import {
 import CarCard from "../../components/CarCard";
 import { fetchCars, fetchLoadMoreCars } from "../../redux/carsOperations";
 
-import { ListCatalog } from "./CatalogPage.styled";
-
+import { CatalogList, BtnLoadMore } from "./CatalogPage.styled";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -36,22 +35,33 @@ const CatalogPage = () => {
       {/* <SideBar /> */}
 
       {isShowList && (
-        <ListCatalog>
+        <CatalogList>
           {itemsCars.map((car) => (
             <li key={car.id}>
               <CarCard car={car} />
             </li>
           ))}
-        </ListCatalog>
+        </CatalogList>
       )}
 
       {isShowButton && (
-        <button type="button" onClick={handleLoadMore}>
+        <BtnLoadMore type="button" onClick={handleLoadMore}>
           Load more
-        </button>
+        </BtnLoadMore>
       )}
 
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && (
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "16px",
+            fontWeight: 500,
+            margin: "100px auto 0",
+          }}
+        >
+          Request in progress...
+        </div>
+      )}
       {error && error}
     </section>
   );
