@@ -12,7 +12,7 @@ export const CardDivStyled = styled.div`
 `;
 
 export const ImgDivStyled = styled.div`
-  // width: 274px;
+  width: 274px;
   height: 268px;
 
   position: relative;
