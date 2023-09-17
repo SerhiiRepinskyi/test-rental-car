@@ -88,12 +88,15 @@ const Modal = ({ car, onClose }) => {
           </svg>
         </BtnClose> */}
         <IconCloseStyled type="button" onClick={onClose}></IconCloseStyled>
+
         <ImgDivStyled>
           <ImgStyled src={img} alt={description} />
         </ImgDivStyled>
+
         <NameDivStyled>
           {make} <ModelSpanStyled>{model}</ModelSpanStyled>, {year}
         </NameDivStyled>
+
         <AdressTextStyled>
           <DescriptionSpanStyled>{city}</DescriptionSpanStyled>
           <DescriptionSpanStyled>{country}</DescriptionSpanStyled>
@@ -101,6 +104,7 @@ const Modal = ({ car, onClose }) => {
           <DescriptionSpanStyled>Year: {year}</DescriptionSpanStyled>
           <DescriptionSpanStyled>Type: {type}</DescriptionSpanStyled>
         </AdressTextStyled>
+
         <TypeTextStyled>
           <DescriptionSpanStyled>
             Fuel Consumption: {fuelConsumption}
@@ -109,15 +113,19 @@ const Modal = ({ car, onClose }) => {
             Engine Size: {engineSize}
           </DescriptionSpanStyled>
         </TypeTextStyled>
+
         <DescriptionTextStyled>{description}</DescriptionTextStyled>
+
         <AccessoriesTextStyled>
           Accessories and functionalities:
         </AccessoriesTextStyled>
+
         <AdressTextStyled>
           <DescriptionSpanStyled>{accessories[0]}</DescriptionSpanStyled>
           <DescriptionSpanStyled>{accessories[1]}</DescriptionSpanStyled>
           <DescriptionSpanStyled>{accessories[2]}</DescriptionSpanStyled>
         </AdressTextStyled>
+
         <TypeTextStyled>
           <DescriptionSpanStyled>{functionalities[0]}</DescriptionSpanStyled>
           <DescriptionSpanStyled>{functionalities[1]}</DescriptionSpanStyled>

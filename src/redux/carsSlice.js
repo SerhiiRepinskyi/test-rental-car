@@ -24,15 +24,13 @@ const carsSlice = createSlice({
 
   reducers: {
     addToFavorites: (state, action) => {
-      const carId = action.payload;
-      if (!state.favoriteCars.includes(carId)) {
-        state.favoriteCars = [...state.favoriteCars, carId];
-      }
+      state.favoriteCars = [...state.favoriteCars, action.payload];
     },
 
     removeFromFavorites: (state, action) => {
-      const carId = action.payload;
-      state.favoriteCars = state.favoriteCars.filter((id) => id !== carId);
+      state.favoriteCars = state.favoriteCars.filter(
+        (car) => car.id !== action.payload.id
+      );
     },
   },
 

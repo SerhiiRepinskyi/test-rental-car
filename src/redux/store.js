@@ -25,9 +25,9 @@ const middleware = [
 
 // Persisting token field from auth slise to localstorage
 const carsPersistConfig = {
-  key: "cars", // Назва ключа в LocalStorage
+  key: "favoriteCars", // Назва ключа в LocalStorage
   storage,
-  // whitelist: ["favoriteCars"],
+  whitelist: ["favoriteCars"],
 };
 
 export const store = configureStore({

@@ -21,6 +21,7 @@ import {
 const CarCard = ({ car }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const favoriteCars = useSelector(selectFavoriteCars);
 
   const {
     id,
@@ -34,19 +35,18 @@ const CarCard = ({ car }) => {
     rentalCompany,
     accessories,
   } = car;
-
   const city = getCityFromAddress(car);
   const country = getCountryFromAddress(car);
 
-  const favoriteCars = useSelector(selectFavoriteCars);
-
-  const carIsFavorite = favoriteCars.includes(car.id);
+  const carIsFavorite = favoriteCars.some(
+    (favoriteCar) => favoriteCar.id === car.id
+  );
 
   const handleToggleFavorite = () => {
     if (carIsFavorite) {
-      dispatch(removeFromFavorites(car.id));
+      dispatch(removeFromFavorites(car));
     } else {
-      dispatch(addToFavorites(car.id));
+      dispatch(addToFavorites(car));
     }
   };
 

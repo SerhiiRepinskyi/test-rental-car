@@ -1,13 +1,10 @@
 import { useSelector } from "react-redux";
-import { selectFavoriteCars, selectItemsCars } from "../../redux/selectors";
+import { selectFavoriteCars } from "../../redux/selectors";
 import CarCard from "../../components/CarCard";
 import { CatalogList } from "../CatalogPage/CatalogPage.styled";
 
 const FavoritesPage = () => {
-  const favoriteCarIds = useSelector(selectFavoriteCars);
-  const allCars = useSelector(selectItemsCars);
-
-  const favoriteCars = allCars.filter((car) => favoriteCarIds.includes(car.id));
+  const favoriteCars = useSelector(selectFavoriteCars);
 
   const isShowFavoriteList = favoriteCars.length > 0;
 
