@@ -28,10 +28,26 @@ export const ContainerHeader = styled.div`
 `;
 
 export const LinkStyled = styled(Link)`
+  width: 100%;
+  max-width: 160px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   text-decoration: none;
+
+  color: var(--primary-white-color);
+  background-color: var(--accent-color);
+
+  border-radius: 12px;
+  border: none;
+
+  transition: background-color var(--transition);
 
   &:hover,
   &:focus {
-    color: var(--accent-hover-color);
+    background-color: var(--accent-hover-color);
   }
 `;
