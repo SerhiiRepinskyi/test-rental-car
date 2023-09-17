@@ -10,8 +10,6 @@ const FavoritesPage = () => {
 
   return (
     <section>
-      <p>FavoritesPage-FavoritesPage</p>
-
       {isShowFavoriteList && (
         <CatalogList>
           {favoriteCars.map((car) => (
