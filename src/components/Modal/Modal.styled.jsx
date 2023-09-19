@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as IconClose } from "../../assets/images/x.svg";
 
 export const ModalBackdrop = styled.div`
-  // z-index: 999;
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;

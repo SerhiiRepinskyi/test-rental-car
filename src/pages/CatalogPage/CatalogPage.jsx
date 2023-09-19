@@ -5,10 +5,10 @@ import {
   selectIsLoading,
   selectError,
 } from "../../redux/selectors";
-import CarCard from "../../components/CarCard";
 import { fetchCars, fetchLoadMoreCars } from "../../redux/carsOperations";
-
-import { CatalogList, BtnLoadMore } from "./CatalogPage.styled";
+import CarCard from "../../components/CarCard";
+// import FiltersForm from "../../components/FiltersForm";
+import { Container, CatalogList, BtnLoadMore } from "./CatalogPage.styled";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -32,37 +32,39 @@ const CatalogPage = () => {
 
   return (
     <section>
-      {/* <SideBar /> */}
+      <Container>
+        {/* <FiltersForm /> */}
 
-      {isShowList && (
-        <CatalogList>
-          {itemsCars.map((car) => (
-            <li key={car.id}>
-              <CarCard car={car} />
-            </li>
-          ))}
-        </CatalogList>
-      )}
+        {isShowList && (
+          <CatalogList>
+            {itemsCars.map((car) => (
+              <li key={car.id}>
+                <CarCard car={car} />
+              </li>
+            ))}
+          </CatalogList>
+        )}
 
-      {isShowButton && (
-        <BtnLoadMore type="button" onClick={handleLoadMore}>
-          Load more
-        </BtnLoadMore>
-      )}
+        {isShowButton && (
+          <BtnLoadMore type="button" onClick={handleLoadMore}>
+            Load more
+          </BtnLoadMore>
+        )}
 
-      {isLoading && !error && (
-        <div
-          style={{
-            textAlign: "center",
-            fontSize: "16px",
-            fontWeight: 500,
-            margin: "100px auto 0",
-          }}
-        >
-          Request in progress...
-        </div>
-      )}
-      {error && error}
+        {isLoading && !error && (
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: "16px",
+              fontWeight: 500,
+              margin: "100px auto 0",
+            }}
+          >
+            Request in progress...
+          </div>
+        )}
+        {error && error}
+      </Container>
     </section>
   );
 };

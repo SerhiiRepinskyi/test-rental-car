@@ -1,11 +1,25 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import heroBackgroundImage from "../../assets/images/cars-city-squoosh.jpg";
 
-export const Container = styled.div`
+export const ContainerHero = styled.div`
+  width: 100%;
+  height: 100vh;
+  
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+
+  padding: 180px;
+
+  text-align: center;
+
+  background-color: #c4c4c4;
+  background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
+    url(${heroBackgroundImage});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   }
 `;
 

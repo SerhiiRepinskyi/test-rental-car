@@ -8,8 +8,9 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  background-color: white;
-  z-index: 999;
+  background-color: #c4c4c4;
+
+  z-index: 998;
 `;
 
 export const ContainerHeader = styled.div`
