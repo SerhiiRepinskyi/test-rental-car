@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as IconClose } from "../../assets/images/x.svg";
 
 export const ModalBackdrop = styled.div`
   z-index: 999;
@@ -32,14 +31,22 @@ export const ModalContent = styled.div`
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 `;
 
-export const IconCloseStyled = styled(IconClose)`
+export const BtnClose = styled.button`
   position: absolute;
   top: 16px;
   right: 16px;
 
   cursor: pointer;
 
-  fill: currentColor;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--primary-black-color);
+  background-color: var(--primary-white-color);
   border: none;
   border-radius: 50%;
 
@@ -52,30 +59,10 @@ export const IconCloseStyled = styled(IconClose)`
   }
 `;
 
-// export const BtnClose = styled.button`
-//   position: absolute;
-//   top: 16px;
-//   right: 16px;
-
-//   cursor: pointer;
-
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   color: black;
-//   background-color: var(--primary-white-color);
-//   // background-color: transparent;
-//   border: none;
-//   border-radius: 50%;
-
-//   transition: background-color var(--transition);
-
-//   &:hover,
-//   &:focus {
-//     background-color: var(--accent-hover-color);
-//   }
-// `;
+export const SvgStyled = styled.svg`
+  stroke: currentColor;
+  // fill: currentColor;
+`;
 
 export const ImgDivStyled = styled.div`
   width: 461px;
@@ -213,9 +200,7 @@ export const DescriptionRentalPStyled = styled.div`
   letter-spacing: -0.24px;
 `;
 
-
 export const AccentSpanStyled = styled.span`
   color: var(--accent-color);
   font-weight: 600;
 `;
-

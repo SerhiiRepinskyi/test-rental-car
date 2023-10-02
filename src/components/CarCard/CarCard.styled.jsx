@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as heartNormalIcon } from "../../assets/images/heart-normal.svg";
-import { ReactComponent as heartActiveIcon } from "../../assets/images/heart-active.svg";
 
 export const CardDivStyled = styled.div`
   display: flex;
@@ -37,16 +35,34 @@ export const ImgStyled = styled.img`
   object-fit: cover;
 `;
 
-export const HeartNormalIcon = styled(heartNormalIcon)`
+export const BtnFavorite = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
+
+  cursor: pointer;
+
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  border: none;
+
+  transition: transform var(--transition);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.3);
+  }
 `;
 
-export const HeartActiveIcon = styled(heartActiveIcon)`
-  position: absolute;
-  top: 14px;
-  right: 14px;
+export const SvgStyled = styled.svg`
+  stroke: currentColor;
+  fill: currentColor;
 `;
 
 export const NameDivStyled = styled.div`

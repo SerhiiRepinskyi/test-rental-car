@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import heroBackgroundImage from "../../assets/images/cars-city-squoosh.jpg";
+import heroBackgroundImage from "../../assets/images/hero-cars-city.jpg";
 
 export const ContainerHero = styled.div`
   width: 100%;

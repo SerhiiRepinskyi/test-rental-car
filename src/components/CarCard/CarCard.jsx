@@ -4,6 +4,7 @@ import { selectFavoriteCars } from "../../redux/selectors";
 import { addToFavorites, removeFromFavorites } from "../../redux/carsSlice";
 import Modal from "../Modal";
 import { getCityFromAddress, getCountryFromAddress } from "../../helpers/utils";
+import icon from "../../assets/sprite-icons.svg";
 import {
   CardDivStyled,
   ImgDivStyled,
@@ -14,8 +15,8 @@ import {
   DescriptionSpanStyled,
   TypeTextStyled,
   BtnLearnMoreStyled,
-  HeartNormalIcon,
-  HeartActiveIcon,
+  BtnFavorite,
+  SvgStyled,
 } from "./CarCard.styled";
 
 const CarCard = ({ car }) => {
@@ -60,17 +61,25 @@ const CarCard = ({ car }) => {
     setIsModalOpen(false);
   };
 
+  const favoriteIcon = carIsFavorite ? "heart-active" : "heart-normal";
+
   return (
     <>
       <CardDivStyled>
         <ImgDivStyled>
           <ImgStyled src={img} alt={description} />
 
-          {carIsFavorite ? (
-            <HeartActiveIcon type="button" onClick={handleToggleFavorite} />
-          ) : (
-            <HeartNormalIcon type="button" onClick={handleToggleFavorite} />
-          )}
+          <BtnFavorite
+            type="button"
+            onClick={handleToggleFavorite}
+            aria-label={
+              carIsFavorite ? "Remove from favorites" : "Add to favorites"
+            }
+          >
+            <SvgStyled width="18" height="18">
+              <use href={`${icon}#${favoriteIcon}`}></use>
+            </SvgStyled>
+          </BtnFavorite>
         </ImgDivStyled>
 
         <NameDivStyled>

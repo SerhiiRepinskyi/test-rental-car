@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
+import icon from "../../assets/sprite-icons.svg";
 import {
   getCityFromAddress,
   getCountryFromAddress,
@@ -12,7 +13,8 @@ import {
 import {
   ModalBackdrop,
   ModalContent,
-  IconCloseStyled,
+  BtnClose,
+  SvgStyled,
   ImgDivStyled,
   ImgStyled,
   NameDivStyled,
@@ -82,12 +84,11 @@ const Modal = ({ car, onClose }) => {
   return createPortal(
     <ModalBackdrop onClick={handleBackdropClick}>
       <ModalContent>
-        {/* <BtnClose type="button" onClick={onClose}>
-          <svg width="24" height="24" viewBox="0 0 24 24">
-            <use href="../../assets/images/x.svg"></use>
-          </svg>
-        </BtnClose> */}
-        <IconCloseStyled type="button" onClick={onClose}></IconCloseStyled>
+        <BtnClose type="button" onClick={onClose} aria-label="Close">
+          <SvgStyled width="24" height="24">
+            <use href={icon + "#x"}></use>
+          </SvgStyled>
+        </BtnClose>
 
         <ImgDivStyled>
           <ImgStyled src={img} alt={description} />
