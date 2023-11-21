@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectItemsCars,
+  selectItemCars,
   selectIsLoading,
   selectError,
 } from "../../redux/selectors";
-import { fetchCars, fetchLoadMoreCars } from "../../redux/carsOperations";
+import {
+  fetchLimitCars,
+  fetchLoadMoreCars,
+  fetchAllCars,
+} from "../../redux/carsOperations";
 import CarCard from "../../components/CarCard";
 // import FiltersForm from "../../components/FiltersForm";
 import { Container, CatalogList, BtnLoadMore } from "./CatalogPage.styled";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  const itemsCars = useSelector(selectItemsCars);
+  const itemCars = useSelector(selectItemCars);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const [currentPage, setCurrentPage] = useState(2);
 
   useEffect(() => {
-    dispatch(fetchCars());
+    dispatch(fetchLimitCars());
+    dispatch(fetchAllCars());
   }, [dispatch]);
 
   const handleLoadMore = () => {
@@ -26,9 +31,9 @@ const CatalogPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const isShowList = itemsCars.length > 0;
+  const isShowList = itemCars.length > 0;
   const isShowButton =
-    itemsCars.length > 0 && !isLoading && !(itemsCars.length % 8);
+    itemCars.length > 0 && !isLoading && !(itemCars.length % 12);
 
   return (
     <section>
@@ -37,7 +42,7 @@ const CatalogPage = () => {
 
         {isShowList && (
           <CatalogList>
-            {itemsCars.map((car) => (
+            {itemCars.map((car) => (
               <li key={car.id}>
                 <CarCard car={car} />
               </li>

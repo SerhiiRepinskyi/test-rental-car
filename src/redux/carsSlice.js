@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCars, fetchLoadMoreCars, fetchAllCars } from "./carsOperations";
+import {
+  fetchLimitCars,
+  fetchLoadMoreCars,
+  fetchAllCars,
+} from "./carsOperations";
 
 const carsInitialState = {
-  itemsCars: [],
+  itemCars: [],
   favoriteCars: [],
   isLoading: false,
   error: null,
@@ -37,19 +41,19 @@ const carsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCars.pending, handlePending)
-      .addCase(fetchCars.fulfilled, (state, action) => {
+      .addCase(fetchLimitCars.pending, handlePending)
+      .addCase(fetchLimitCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.itemsCars = action.payload;
+        state.itemCars = action.payload;
       })
-      .addCase(fetchCars.rejected, handleRejected)
+      .addCase(fetchLimitCars.rejected, handleRejected)
 
       .addCase(fetchLoadMoreCars.pending, handlePending)
       .addCase(fetchLoadMoreCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.itemsCars = [...state.itemsCars, ...action.payload];
+        state.itemCars = [...state.itemCars, ...action.payload];
       })
       .addCase(fetchLoadMoreCars.rejected, handleRejected)
 

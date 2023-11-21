@@ -2,9 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://65030b0ea0f2c1f3faeb565c.mockapi.io";
-const LIMIT = 8;
+const LIMIT = 12;
 
-export const fetchCars = createAsyncThunk(
+export const fetchLimitCars = createAsyncThunk(
   "cars/fetchCars",
   async (_, thunkAPI) => {
     try {
@@ -30,6 +30,7 @@ export const fetchLoadMoreCars = createAsyncThunk(
   }
 );
 
+// Отримання даних про всі cars для відображення в dropdown при фільтрації
 export const fetchAllCars = createAsyncThunk(
   "cars/fetchAllCars",
   async (_, thunkAPI) => {
