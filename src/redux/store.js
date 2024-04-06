@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { carsReducer } from "./carsSlice";
-// import { filterReducer } from "./contacts/filterSlice";
+import { filtersReducer } from "./filtersSlice";
 
 import {
   persistReducer,
@@ -26,6 +26,7 @@ const middleware = [
 // Persisting token field from auth slise to localstorage
 const carsPersistConfig = {
   key: "favoriteCars", // Назва ключа в LocalStorage
+  version: 1,
   storage,
   whitelist: ["favoriteCars"],
 };
@@ -33,9 +34,10 @@ const carsPersistConfig = {
 export const store = configureStore({
   reducer: {
     cars: persistReducer(carsPersistConfig, carsReducer),
-    // filter: filterReducer,
+    filters: filtersReducer,
   },
   middleware,
 });
 
+// Створення persistor для PersistGate - обгортки App при ініціалізації Redux Persist
 export const persistor = persistStore(store);
