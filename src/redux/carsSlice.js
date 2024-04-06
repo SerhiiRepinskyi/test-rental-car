@@ -4,9 +4,10 @@ import {
   fetchLoadMoreCars,
   fetchAllCars,
 } from "./carsOperations";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const carsInitialState = {
-  itemCars: [],
+  itemLimitCars: [],
   favoriteCars: [],
   isLoading: false,
   error: null,
@@ -30,12 +31,14 @@ const carsSlice = createSlice({
   reducers: {
     addToFavorites: (state, action) => {
       state.favoriteCars = [...state.favoriteCars, action.payload];
+      Notify.success("Car added to favorites");
     },
 
     removeFromFavorites: (state, action) => {
       state.favoriteCars = state.favoriteCars.filter(
         (car) => car.id !== action.payload.id
       );
+      Notify.warning("Car removed from favorites");
     },
   },
 
@@ -45,7 +48,7 @@ const carsSlice = createSlice({
       .addCase(fetchLimitCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.itemCars = action.payload;
+        state.itemLimitCars = action.payload;
       })
       .addCase(fetchLimitCars.rejected, handleRejected)
 
@@ -53,7 +56,7 @@ const carsSlice = createSlice({
       .addCase(fetchLoadMoreCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.itemCars = [...state.itemCars, ...action.payload];
+        state.itemLimitCars = [...state.itemLimitCars, ...action.payload];
       })
       .addCase(fetchLoadMoreCars.rejected, handleRejected)
 
