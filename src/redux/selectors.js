@@ -1,24 +1,34 @@
-// import { createSelector } from "@reduxjs/toolkit";
+import { createSelector } from "@reduxjs/toolkit";
 
-export const selectItemCars = (state) => state.cars.itemCars; // Список cars зі стейта Store
+// === Атомарні селектори ===
+export const selectItemLimitCars = (state) => state.cars.itemLimitCars; // LIMIT cars зі стейта Store
 export const selectFavoriteCars = (state) => state.cars.favoriteCars;
 export const selectIsLoading = (state) => state.cars.isLoading;
 export const selectError = (state) => state.cars.error;
 
-// export const selectFilter = (state) => state.filter;
+export const selectFilters = (state) => state.filters;
 
 export const selectAllCars = (state) => state.cars.allCars; // Всі cars зі стейта Store
+
+// === Складові селектори ===
 // Масив унікальних марок автомобілів для фільтрації
-export const selectUniqueCarBrands = (state) => {
-  const uniqueCarBrands = [
-    ...new Set(state.cars.allCars.map((car) => car.make)),
-  ].sort((a, b) => a.localeCompare(b));
-  return uniqueCarBrands;
-};
+export const selectUniqueCarBrands = createSelector(
+  [selectAllCars],
+  (allCars) => {
+    const uniqueCarBrands = [...new Set(allCars.map((car) => car.make))].sort(
+      (a, b) => a.localeCompare(b)
+    );
+    return uniqueCarBrands;
+  }
+);
+
 // Масив унікальних прайсів оренди автомобілів
-export const selectRentalPrices = (state) => {
+export const selectRentalPrices = createSelector([selectAllCars], (allCars) => {
   const rentalPrices = [
-    ...new Set(state.cars.allCars.map((car) => car.rentalPrice)),
+    ...new Set(allCars.map((car) => Number(car.rentalPrice.slice(1)))),
   ];
+
+  // Впорядковуємо масив чисел по зростанню
+  rentalPrices.sort((a, b) => a - b);
   return rentalPrices;
-};
+});
