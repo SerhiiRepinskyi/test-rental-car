@@ -40,3 +40,18 @@ export const BtnLoadMore = styled.button`
     color: var(--accent-hover-color);
   }
 `;
+
+export const PCenterText = styled.p`
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 100px auto 0;
+`;
+
+// style={{
+//   textAlign: "center",
+//   fontSize: "16px",
+//   fontWeight: 500,
+//   margin: "100px auto 0",
+// }}
+
