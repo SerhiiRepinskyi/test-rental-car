@@ -14,11 +14,14 @@ import {
 } from "../../redux/carsOperations";
 import CarCard from "../../components/CarCard";
 import FiltersForm from "../../components/FiltersForm";
+import getVisibleCarsByFilters from "../../helpers/getVisibleCarsByFilters";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import {
   Container,
   CatalogList,
   BtnLoadMore,
-  PCenterText,
+  TextLoading,
+  TextSkeleton,
 } from "./CatalogPage.styled";
 
 const CatalogPage = () => {
@@ -40,36 +43,23 @@ const CatalogPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  // Функція для фільтрації списку всіх автомобілів
-  const getVisibleCarsByFilters = (allCars, filters) => {
-    const { brand, price, minMileage, maxMileage } = filters;
-
-    let filteredCars = [...allCars]; // Копія cars для фільтрування
-
-    // Послідовно фільтруємо за значеннями фільтрів, якщо вони вказані
-    if (brand) {
-      filteredCars = filteredCars.filter((car) => car.make === brand);
-    }
-    if (price) {
-      filteredCars = filteredCars.filter(
-        (car) => Number(car.rentalPrice.slice(1)) <= price
-      );
-    }
-    if (minMileage) {
-      filteredCars = filteredCars.filter((car) => car.mileage >= minMileage);
-    }
-    if (maxMileage) {
-      filteredCars = filteredCars.filter((car) => car.mileage <= maxMileage);
-    }
-
-    return filteredCars;
-  };
-
-  // Якщо є хоча б один фільтр - getVisibleCarsByFilters, інакше рендеримо itemLimitCars (12 карток)
+  // Якщо є хоча б один фільтр - getVisibleCarsByFilters(), інакше рендеримо itemLimitCars (12 карток)
   const visibleCars =
     filters.brand || filters.price || filters.minMileage || filters.maxMileage
       ? getVisibleCarsByFilters(allCars, filters)
       : itemLimitCars;
+  
+  useEffect(() => {
+    if (
+      filters.brand ||
+      filters.price ||
+      filters.minMileage ||
+      filters.maxMileage
+    ) {
+      Notify.success(`Found ${visibleCars.length} car(s)`);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCars.length]);
 
   const isShowList = visibleCars.length > 0;
 
@@ -79,11 +69,7 @@ const CatalogPage = () => {
   return (
     <section>
       <Container>
-        {!isLoading && <FiltersForm />}
-
-        {isLoading && !error && (
-          <PCenterText>Request in progress...</PCenterText>
-        )}
+        {!isLoading && !error && <FiltersForm />}
 
         {isShowList && (
           <CatalogList>
@@ -95,8 +81,12 @@ const CatalogPage = () => {
           </CatalogList>
         )}
 
-        {!isLoading && !isShowList && (
-          <PCenterText>No cars found with selected filters.</PCenterText>
+        {isLoading && !error && (
+          <TextLoading>Request in progress...</TextLoading>
+        )}
+
+        {!isLoading && !error && !isShowList && (
+          <TextSkeleton>No cars found with selected filters.</TextSkeleton>
         )}
 
         {isShowButton && (
@@ -105,7 +95,7 @@ const CatalogPage = () => {
           </BtnLoadMore>
         )}
 
-        {error && <PCenterText>{error}</PCenterText>}
+        {error && <TextLoading>{error}</TextLoading>}
       </Container>
     </section>
   );

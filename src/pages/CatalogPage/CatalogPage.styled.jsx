@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 70px;
-  padding: 150px 8px 150px;
+  padding: 0px 8px 150px;
 
   // outline: 2px solid red;
   // outline - рамка для обведення контенту
@@ -41,13 +40,12 @@ export const BtnLoadMore = styled.button`
   }
 `;
 
-export const PCenterText = styled.p`
+export const TextLoading = styled.p`
   text-align: center;
   font-size: 16px;
   font-weight: 500;
   margin: 100px auto 0;
 `;
-
 // style={{
 //   textAlign: "center",
 //   fontSize: "16px",
@@ -55,3 +53,10 @@ export const PCenterText = styled.p`
 //   margin: "100px auto 0",
 // }}
 
+export const TextSkeleton = styled.p`
+  text-align: center;
+  margin-top: 75px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: calc(24 / 18);
+`;
