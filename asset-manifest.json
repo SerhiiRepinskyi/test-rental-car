@@ -1,7 +1,12 @@
 {
   "files": {
     "main.css": "/test-rental-car/static/css/main.d3bd5b9b.css",
-    "main.js": "/test-rental-car/static/js/main.7c6ad99d.js",
+    "main.js": "/test-rental-car/static/js/main.004cdf1a.js",
+    "static/js/347.8b3345e8.chunk.js": "/test-rental-car/static/js/347.8b3345e8.chunk.js",
+    "static/js/438.e3fbf3d3.chunk.js": "/test-rental-car/static/js/438.e3fbf3d3.chunk.js",
+    "static/js/242.50aee665.chunk.js": "/test-rental-car/static/js/242.50aee665.chunk.js",
+    "static/js/920.12707adc.chunk.js": "/test-rental-car/static/js/920.12707adc.chunk.js",
+    "static/js/948.4244cedd.chunk.js": "/test-rental-car/static/js/948.4244cedd.chunk.js",
     "static/media/hero-cars-city.jpg": "/test-rental-car/static/media/hero-cars-city.a190f6074f5192f756bc.jpg",
     "static/media/Manrope-SemiBold.ttf": "/test-rental-car/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
     "static/media/Manrope-Medium.ttf": "/test-rental-car/static/media/Manrope-Medium.08894ccb04665d1a9d53.ttf",
@@ -9,10 +14,15 @@
     "static/media/sprite-icons.svg": "/test-rental-car/static/media/sprite-icons.a0c760151d356ff66587c8847e27aa59.svg",
     "index.html": "/test-rental-car/index.html",
     "main.d3bd5b9b.css.map": "/test-rental-car/static/css/main.d3bd5b9b.css.map",
-    "main.7c6ad99d.js.map": "/test-rental-car/static/js/main.7c6ad99d.js.map"
+    "main.004cdf1a.js.map": "/test-rental-car/static/js/main.004cdf1a.js.map",
+    "347.8b3345e8.chunk.js.map": "/test-rental-car/static/js/347.8b3345e8.chunk.js.map",
+    "438.e3fbf3d3.chunk.js.map": "/test-rental-car/static/js/438.e3fbf3d3.chunk.js.map",
+    "242.50aee665.chunk.js.map": "/test-rental-car/static/js/242.50aee665.chunk.js.map",
+    "920.12707adc.chunk.js.map": "/test-rental-car/static/js/920.12707adc.chunk.js.map",
+    "948.4244cedd.chunk.js.map": "/test-rental-car/static/js/948.4244cedd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d3bd5b9b.css",
-    "static/js/main.7c6ad99d.js"
+    "static/js/main.004cdf1a.js"
   ]
 }
