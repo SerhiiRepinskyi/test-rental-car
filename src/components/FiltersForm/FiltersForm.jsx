@@ -5,8 +5,17 @@ import {
   selectUniqueCarBrands,
   selectRentalPrices,
 } from "../../redux/selectors";
-import Select from "react-select";
-// import { Container } from "./FiltersForm.styled";
+import CustomReactSelect from "../CustomReactSelect";
+import {
+  FormStyled,
+  LabelStyled,
+  TextMileage,
+  MileagesContainer,
+  MileageWrapper,
+  MileageLabel,
+  MileageInput,
+  BtnFilters,
+} from "./FiltersForm.styled";
 
 const FiltersForm = () => {
   const dispatch = useDispatch();
@@ -21,7 +30,7 @@ const FiltersForm = () => {
     maxMileage: "",
   });
 
-  // Очистка filters в Redux Store при розмонтуванні компонента (componentWillUnmount )
+  // Очистка filters в Redux Store при розмонтуванні компонента (componentWillUnmount)
   useEffect(() => {
     return () => {
       dispatch(clearFilters());
@@ -41,6 +50,7 @@ const FiltersForm = () => {
   }));
 
   // Функції для обробки вибору користувачем параметрів фільтрації
+  // handleBrandChange, handlePriceChange, handleMileageChange
   const handleBrandChange = (selectedOption) => {
     setFormData({
       ...formData,
@@ -55,20 +65,20 @@ const FiltersForm = () => {
     });
   };
 
-  const handleMinMileage = (event) => {
-    // Видаляємо всі коми в minMileage перед конвертацією у число
-    const value = parseInt(event.target.value.replace(/,/g, ""), 10);
-    if (!isNaN(value) && value >= 0) {
-      setFormData({ ...formData, minMileage: value });
+  const handleMileageChange = (event) => {
+    const { name, value } = event.target;
+    let processedValue = value;
+    if (name === "minMileage" || name === "maxMileage") {
+      // Видалення коми і перетворення рядка на число
+      processedValue = Number(value.replace(/,/g, ""));
+      if (isNaN(processedValue)) {
+        processedValue = "";
+      }
     }
-  };
-
-  const handleMaxMileage = (event) => {
-    // Видаляємо всі коми в maxMileage перед конвертацією у число
-    const value = parseInt(event.target.value.replace(/,/g, ""), 10);
-    if (!isNaN(value) && value >= 0) {
-      setFormData({ ...formData, maxMileage: value });
-    }
+    setFormData({
+      ...formData,
+      [name]: processedValue,
+    });
   };
 
   // При "Submit" форми відправляємо action для збереження filters в Redux Store
@@ -89,16 +99,11 @@ const FiltersForm = () => {
     });
   };
 
-  // Функція для форматування числа з комами для відображення в inputs "Сar mileage / km"
-  const formatNumberWithCommas = (value) => {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
-
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
+    <FormStyled onSubmit={handleSubmit} autoComplete="off">
       <div>
-        <label htmlFor="car_brand">Car brand</label>
-        <Select
+        <LabelStyled htmlFor="car_brand">Car brand</LabelStyled>
+        <CustomReactSelect
           id="car_brand"
           name="brand"
           placeholder="Enter the text"
@@ -109,15 +114,13 @@ const FiltersForm = () => {
               ? brandOptions.find((option) => option.value === formData.brand)
               : null
           }
-          isClearable={true}
-          isSearchable={true}
-          blurInputOnSelect={true}
+          type="BRAND"
         />
       </div>
 
       <div>
-        <label htmlFor="price">Price / 1 hour</label>
-        <Select
+        <LabelStyled htmlFor="price">Price / 1 hour</LabelStyled>
+        <CustomReactSelect
           id="price"
           name="price"
           placeholder="To $"
@@ -130,36 +133,43 @@ const FiltersForm = () => {
                 )
               : null
           }
-          isClearable={true}
-          isSearchable={true}
-          blurInputOnSelect={true}
+          type="PRICE"
         />
       </div>
 
-      <div>Сar mileage / km</div>
-      <label htmlFor="car_mileage_from">From</label>
-      <input
-        id="car_mileage_from"
-        type="text"
-        name="mileageFrom"
-        value={formatNumberWithCommas(formData.minMileage)}
-        onChange={handleMinMileage}
-      ></input>
+      <div>
+        <TextMileage>Сar mileage / km</TextMileage>
 
-      <label htmlFor="car_mileage_to">To</label>
-      <input
-        id="car_mileage_to"
-        type="text"
-        name="mileageTo"
-        value={formatNumberWithCommas(formData.maxMileage)}
-        onChange={handleMaxMileage}
-      ></input>
+        <MileagesContainer>
+          <MileageWrapper>
+            <MileageLabel htmlFor="car_mileage_from">From</MileageLabel>
+            <MileageInput
+              id="car_mileage_from"
+              type="text"
+              name="minMileage"
+              value={formData.minMileage.toLocaleString("en-US")}
+              onChange={handleMileageChange}
+            ></MileageInput>
+          </MileageWrapper>
 
-      <button type="submit">Search</button>
-      <button type="button" onClick={handleReset}>
+          <MileageWrapper>
+            <MileageLabel htmlFor="car_mileage_to">To</MileageLabel>
+            <MileageInput
+              id="car_mileage_to"
+              type="text"
+              name="maxMileage"
+              value={formData.maxMileage.toLocaleString("en-US")}
+              onChange={handleMileageChange}
+            ></MileageInput>
+          </MileageWrapper>
+        </MileagesContainer>
+      </div>
+
+      <BtnFilters type="submit">Search</BtnFilters>
+      <BtnFilters type="button" onClick={handleReset}>
         Reset
-      </button>
-    </form>
+      </BtnFilters>
+    </FormStyled>
   );
 };
 
