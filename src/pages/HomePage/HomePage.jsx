@@ -1,4 +1,4 @@
-import { ContainerHero, LinkStyled, Span } from "./HomePage.styled";
+import { ContainerHero, WrapperDiv, LinkStyled, Span } from "./HomePage.styled";
 
 const HomePage = () => {
   return (
@@ -8,7 +8,10 @@ const HomePage = () => {
           Welcome to <Span>RentalCar</Span> Service!
         </h1>
 
-        <LinkStyled to="/catalog">Car rental CATALOG</LinkStyled>
+        <WrapperDiv>
+          <p>Car rental</p>
+          <LinkStyled to="/catalog">Catalog</LinkStyled>
+        </WrapperDiv>
       </ContainerHero>
     </section>
   );

@@ -6,10 +6,6 @@ export const ContainerHero = styled.div`
   width: 100%;
   height: 100vh;
   
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   padding: 180px;
 
   text-align: center;
@@ -32,7 +28,7 @@ export const LinkStyled = styled(Link)`
   cursor: pointer;
 
   width: 100%;
-  max-width: 274px;
+  max-width: 160px;
   height: 44px;
 
   display: flex;
@@ -43,14 +39,12 @@ export const LinkStyled = styled(Link)`
 
   color: var(--primary-white-color);
   background-color: var(--accent-color);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 20px; /* 142.857% */
 
   border-radius: 12px;
   border: none;
-
-  margin-top: 36px;
 
   transition: background-color var(--transition);
 
@@ -58,4 +52,18 @@ export const LinkStyled = styled(Link)`
   &:focus {
     background-color: var(--accent-hover-color);
   }
+`;
+
+export const WrapperDiv = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin-top: 36px;
+
+  color: var(--primary-black-color);
+  font-size: 24px;
+  font-weight: 600;
 `;

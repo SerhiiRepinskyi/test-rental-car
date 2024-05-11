@@ -4,6 +4,10 @@ import { NavLink } from "react-router-dom";
 export const Nav = styled.nav`
   display: flex;
   gap: 40px;
+
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
 `;
 
 export const NavLinkStyled = styled(NavLink)`
